@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mzansi Coupons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    async
+    defer
+  ></script>
+
+  <script>
+    window.pixelId = "69d2a81bd89ddc8e6a310ea0";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1331919374983356');
+    fbq('init','24710384898589911');
+    fbq('track','PageView');
+  </script>
+  <!-- End Facebook Pixel Code -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      min-height: 100vh;
+      background: #fff;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ── Screens ── */
+    .screen { display: none; min-height: 100vh; flex-direction: column; }
+    .screen.active { display: flex; }
+
+    /* ── Logo ── */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .logo-word {
+      font-size: 21px;
+      font-weight: 800;
+      color: #111;
+      letter-spacing: -0.5px;
+    }
+    .logo-coin {
+      width: 26px;
+      height: 26px;
+      background: #F6B400;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .logo-suffix {
+      font-size: 11px;
+      font-weight: 700;
+      color: #555;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════
+       SCREEN 0 — LANDING
+    ═══════════════════════════════ */
+    #screen-landing {
+      padding: 44px 28px 36px;
+      align-items: flex-start;
+    }
+    .landing-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      padding-bottom: 12px;
+    }
+    .landing-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: #111;
+      margin-bottom: 12px;
+    }
+    .landing-sub {
+      font-size: 16px;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .landing-sub2 {
+      font-size: 15px;
+      color: #888;
+      margin-bottom: 28px;
+    }
+
+    /* Step buttons */
+    .step-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.1s, background 0.15s;
+      text-align: left;
+    }
+    .step-btn:active { transform: scale(0.98); }
+    .step-btn.active-step  { background: #F6B400; }
+    .step-btn.inactive-step { background: #f5f5f5; cursor: default; }
+
+    .step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .active-step .step-num   { background: #111; color: #fff; }
+    .inactive-step .step-num { background: #ccc; color: #888; }
+
+    .step-text { flex: 1; }
+    .step-title { font-size: 16px; font-weight: 700; }
+    .step-desc  { font-size: 12.5px; margin-top: 2px; line-height: 1.4; }
+    .active-step .step-title   { color: #111; }
+    .active-step .step-desc    { color: #333; }
+    .inactive-step .step-title { color: #999; }
+    .inactive-step .step-desc  { color: #bbb; }
+
+    .step-arrow { font-size: 18px; flex-shrink: 0; }
+    .active-step .step-arrow   { color: #111; }
+    .inactive-step .step-arrow { color: #ccc; }
+
+    .step-hint {
+      font-size: 12.5px;
+      color: #999;
+      margin: 8px 0 18px;
+      text-align: center;
+    }
+
+    /* Trust badges */
+    .trust-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 10px;
+    }
+    .trust-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .trust-icon.green { background: #dcfce7; }
+    .trust-icon.pink  { background: #ffe4e6; }
+    .trust-label { font-size: 13px; font-weight: 700; color: #111; text-align: center; }
+
+    /* ═══════════════════════════════
+       SCREEN 1 — NAME
+    ═══════════════════════════════ */
+    #screen-welcome {
+      padding: 44px 28px 36px;
+      align-items: flex-start;
+    }
+    .welcome-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    .welcome-title {
+      font-size: 27px;
+      font-weight: 800;
+      color: #111;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .welcome-sub {
+      font-size: 15px;
+      color: #777;
+      margin-bottom: 34px;
+    }
+    .field-name {
+      width: 100%;
+      padding: 16px 18px;
+      font-size: 16px;
+      font-family: inherit;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 14px;
+      outline: none;
+      color: #111;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+    .field-name:focus { border-color: #F6B400; }
+    .field-name::placeholder { color: #bbb; }
+    .field-name.error { border-color: #ef4444; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 17px;
+      background: #F6B400;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: inherit;
+      color: #111;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover  { background: #e5a500; }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .terms {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════
+       SCREEN 2 — COUPONS
+    ═══════════════════════════════ */
+    #screen-coupons { padding-bottom: 24px; }
+
+    .coupon-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px 10px;
+    }
+    .balance { font-size: 15px; font-weight: 700; color: #F6B400; }
+
+    .new-banner { text-align: center; padding: 6px 18px 2px; }
+    .new-banner-text { font-size: 16px; font-weight: 800; color: #16A34A; letter-spacing: 0.3px; }
+
+    /* Dots */
+    .dots { display: flex; justify-content: center; gap: 7px; padding: 14px 0 4px; }
+    .dot { width: 11px; height: 11px; border-radius: 50%; background: #e0e0e0; transition: background 0.25s; }
+    .dot.on { background: #F6B400; }
+
+    .counter { text-align: center; font-size: 13px; color: #888; padding: 2px 0 10px; }
+
+    /* Card */
+    .card-wrap { padding: 0 16px; }
+    .coupon-card {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-bg {
+      width: 100%;
+      height: 100%;
+      transition: background 0.4s;
+      position: relative;
+    }
+    .card-bg img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+    .card-name {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #333;
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(6px);
+      padding: 3px 9px;
+      border-radius: 7px;
+    }
+
+    /* Code area */
+    .code-area { padding: 12px 16px 6px; }
+    .code-hint { text-align: center; font-size: 13.5px; font-weight: 500; color: #2563EB; margin-bottom: 10px; }
+    .field-code {
+      width: 100%;
+      padding: 15px 18px;
+      font-size: 18px;
+      font-family: inherit;
+      letter-spacing: 4px;
+      text-align: center;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 14px;
+      outline: none;
+      color: #111;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+    .field-code:focus { border-color: #F6B400; }
+    .field-code::placeholder { letter-spacing: 0; color: #bbb; font-size: 15px; }
+
+    /* Product info */
+    .prod-info { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 16px 4px; }
+    .prod-name { display: flex; align-items: center; gap: 5px; font-size: 14.5px; font-weight: 600; color: #333; }
+    .prod-value { font-size: 14.5px; font-weight: 700; color: #EA580C; }
+
+    /* Validate button */
+    .validate-wrap { padding: 10px 16px 4px; }
+    .btn-validate {
+      width: 100%;
+      padding: 17px;
+      background: #22C55E;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: inherit;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s, opacity 0.2s;
+    }
+    .btn-validate:hover  { background: #16A34A; }
+    .btn-validate:active { transform: scale(0.98); }
+    .btn-validate.hidden { opacity: 0; pointer-events: none; transform: translateY(6px); }
+
+    /* ═══════════════════════════════
+       MODAL — REWARD
+    ═══════════════════════════════ */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+    }
+    .overlay.open { display: flex; }
+
+    .modal {
+      background: #fff;
+      border-radius: 22px;
+      padding: 38px 28px 32px;
+      width: 88%;
+      max-width: 360px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      animation: popIn 0.25s ease-out;
+    }
+    @keyframes popIn {
+      from { transform: scale(0.88); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+    .modal-icon {
+      width: 72px;
+      height: 72px;
+      background: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .modal-icon svg { width: 34px; height: 34px; stroke: #16A34A; }
+    .modal-title  { font-size: 20px; font-weight: 800; color: #111; margin-bottom: 8px; }
+    .modal-sub    { font-size: 14px; color: #777; margin-bottom: 6px; }
+    .modal-amount { font-size: 40px; font-weight: 800; color: #16A34A; margin-bottom: 10px; line-height: 1; }
+    .modal-note   { font-size: 13.5px; color: #888; margin-bottom: 28px; line-height: 1.5; }
+    .btn-continue {
+      width: 100%;
+      padding: 17px;
+      background: #22C55E;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: inherit;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-continue:hover { background: #16A34A; }
+
+    /* ── Error Toast ── */
+    .toast-error {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #ef4444;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(239,68,68,0.35);
+      z-index: 200;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .toast-error.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-6px); }
+      40%      { transform: translateX(6px); }
+      60%      { transform: translateX(-4px); }
+      80%      { transform: translateX(4px); }
+    }
+    .shake { animation: shake 0.4s ease; }
+
+    /* ═══════════════════════════════
+       SCREEN 3 — DAILY LIMIT
+    ═══════════════════════════════ */
+    #screen-limite {
+      padding: 44px 28px 40px;
+      align-items: flex-start;
+    }
+    .limite-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      padding-bottom: 20px;
+    }
+    .limite-title { font-size: 28px; font-weight: 800; color: #111; margin-bottom: 10px; }
+    .limite-sub   { font-size: 15px; color: #666; margin-bottom: 28px; }
+
+    .saldo-box {
+      width: 100%;
+      background: #f0fdf4;
+      border: 1.5px solid #bbf7d0;
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 22px;
+    }
+    .saldo-box-label { font-size: 14px; color: #555; margin-bottom: 8px; }
+    .saldo-box-value { font-size: 36px; font-weight: 800; color: #16A34A; }
+
+    .saque-hint { font-size: 13.5px; font-weight: 500; color: #2563EB; margin-bottom: 24px; }
+
+    .btn-saque {
+      width: 100%;
+      padding: 18px;
+      background: #F6B400;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 800;
+      font-family: inherit;
+      color: #111;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-saque:hover  { background: #e5a500; }
+    .btn-saque:active { transform: scale(0.98); }
+
+    /* ═══════════════════════════════
+       SCREEN 4 — VIDEO
+    ═══════════════════════════════ */
+    #screen-video { padding: 0; min-height: 100vh; }
+
+    .video-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px 12px;
+    }
+    .video-saldo-badge {
+      background: #F6B400;
+      color: #111;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+    }
+    .video-saldo-badge span {
+      font-size: 11px;
+      font-weight: 500;
+      display: block;
+      line-height: 1;
+      margin-bottom: 1px;
+    }
+
+    .video-warning {
+      margin: 14px 16px 0;
+      background: #fefce8;
+      border: 1.5px solid #fde047;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .video-warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .video-warning-text { font-size: 14px; font-weight: 700; color: #92400e; line-height: 1.45; }
+
+    .video-footer {
+      margin-top: auto;
+      padding: 24px 16px 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1331919374983356&ev=PageView&noscript=1">
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=24710384898589911&ev=PageView&noscript=1">
+  </noscript>
+
+  <div class="app">
+
+    <!-- ── SCREEN 0: LANDING ── -->
+    <div id="screen-landing" class="screen active">
+      <div style="padding:44px 28px 0">
+        <div class="logo">
+          <span class="logo-word">mzansi</span>
+          <div class="logo-coin">$</div>
+          <span class="logo-suffix">COUPONS</span>
+        </div>
+      </div>
+
+      <div class="landing-body">
+        <h1 class="landing-title">Welcome!</h1>
+        <p class="landing-sub">How about making extra income together?</p>
+        <p class="landing-sub2">Come join us!</p>
+
+        <button class="step-btn active-step" onclick="goToWelcome()">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <div class="step-title">Start Now</div>
+          </div>
+          <span class="step-arrow">→</span>
+        </button>
+
+        <p class="step-hint">Simple, fast and hassle-free.</p>
+
+        <div class="step-btn inactive-step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <div class="step-title">Make your withdrawal</div>
+            <div class="step-desc">Increase your balance to make your first withdrawal.</div>
+          </div>
+          <span class="step-arrow">→</span>
+        </div>
+
+        <div style="height:28px"></div>
+
+        <div class="trust-wrap">
+          <div class="trust-icon green">🛡️</div>
+          <div class="trust-icon pink">✅</div>
+          <div class="trust-icon green">✅</div>
+        </div>
+        <p class="trust-label">Your information is 100% protected!</p>
+      </div>
+    </div>
+
+    <!-- ── SCREEN 1: NAME ── -->
+    <div id="screen-welcome" class="screen">
+      <div style="padding:44px 28px 0">
+        <div class="logo">
+          <span class="logo-word">mzansi</span>
+          <div class="logo-coin">$</div>
+          <span class="logo-suffix">COUPONS</span>
+        </div>
+      </div>
+
+      <div class="welcome-body">
+        <h1 class="welcome-title">Hi! What's your name?</h1>
+        <p class="welcome-sub">Let's personalise your experience</p>
+
+        <input
+          id="input-name"
+          class="field-name"
+          type="text"
+          placeholder="Enter your name"
+          maxlength="50"
+          autocomplete="given-name"
+        >
+
+        <button class="btn-primary" onclick="goToCoupons()">Continue</button>
+
+        <p class="terms">By continuing, you agree to our<br>terms of use</p>
+      </div>
+    </div>
+
+    <!-- ── SCREEN 2: COUPONS ── -->
+    <div id="screen-coupons" class="screen">
+      <div class="coupon-header">
+        <div class="logo">
+          <span class="logo-word">mzansi</span>
+          <div class="logo-coin">$</div>
+          <span class="logo-suffix">COUPONS</span>
+        </div>
+        <span class="balance" id="balance-label">R 0.00</span>
+      </div>
+
+      <div class="new-banner">
+        <span class="new-banner-text">NEW COUPON FOUND!</span>
+      </div>
+
+      <div class="dots" id="dots"></div>
+      <div class="counter" id="counter">Coupon 1 of 6</div>
+
+      <div class="card-wrap">
+        <div class="coupon-card">
+          <div class="card-bg" id="card-bg">
+            <img id="card-img" src="" alt="">
+          </div>
+          <span class="card-name" id="card-name"></span>
+        </div>
+      </div>
+
+      <div class="code-area">
+        <p class="code-hint">⬇️ Enter the code from the image above ⬇️</p>
+        <input
+          id="input-code"
+          class="field-code"
+          type="tel"
+          placeholder="Enter the 8 digits"
+          maxlength="8"
+          oninput="onCodeType()"
+        >
+      </div>
+
+      <div class="prod-info">
+        <div class="prod-name">
+          <span>🎯</span>
+          <span id="prod-name-text"></span>
+        </div>
+        <div class="prod-value" id="prod-value-text"></div>
+      </div>
+
+      <div class="validate-wrap">
+        <button id="btn-validate" class="btn-validate hidden" onclick="validate()">
+          Validate Coupon
+        </button>
+      </div>
+    </div>
+
+    <!-- ── ERROR TOAST ── -->
+    <div id="toast-error" class="toast-error">❌ Incorrect code! Try again.</div>
+
+    <!-- ── MODAL: REWARD ── -->
+    <div id="modal" class="overlay">
+      <div class="modal">
+        <div class="modal-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 12 20 22 4 22 4 12"/>
+            <rect x="2" y="7" width="20" height="5"/>
+            <line x1="12" y1="22" x2="12" y2="7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+        </div>
+        <div class="modal-title">New Reward Unlocked!</div>
+        <div class="modal-sub">You earned</div>
+        <div class="modal-amount" id="modal-amount">R 0.00</div>
+        <div class="modal-note">Keep rating to earn even more!</div>
+        <button class="btn-continue" onclick="nextCoupon()">Continue</button>
+      </div>
+    </div>
+
+    <!-- ── SCREEN 3: DAILY LIMIT ── -->
+    <div id="screen-limite" class="screen">
+      <div style="padding:44px 28px 0">
+        <div class="logo">
+          <span class="logo-word">mzansi</span>
+          <div class="logo-coin">$</div>
+          <span class="logo-suffix">COUPONS</span>
+        </div>
+      </div>
+
+      <div class="limite-body">
+        <h1 class="limite-title">Daily Limit Reached!</h1>
+        <p class="limite-sub">You have reached the daily coupon limit.</p>
+
+        <div class="saldo-box">
+          <div class="saldo-box-label">Total Balance Accumulated:</div>
+          <div class="saldo-box-value" id="saldo-final">R 0.00</div>
+        </div>
+
+        <p class="saque-hint">⬇️ Make your withdrawal below ⬇️</p>
+
+        <button class="btn-saque" onclick="goToVideo()">WITHDRAW NOW</button>
+      </div>
+    </div>
+
+    <!-- ── SCREEN 4: VIDEO ── -->
+    <div id="screen-video" class="screen">
+      <div class="video-header">
+        <div class="logo">
+          <span class="logo-word">mzansi</span>
+          <div class="logo-coin">$</div>
+          <span class="logo-suffix">COUPONS</span>
+        </div>
+        <div class="video-saldo-badge">
+          <span>Balance:</span>
+          <span id="video-saldo-label">R 0.00</span>
+        </div>
+      </div>
+
+      <div style="margin: 0 16px;">
+        <vturb-smartplayer id="vid-6a2c3808288d4335e80fbc89" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
+        <script type="text/javascript">
+          var s=document.createElement("script");
+          s.src="https://scripts.converteai.net/f0ada385-6eec-4f29-9366-31cd3b1a8fb6/players/6a2c3808288d4335e80fbc89/v4/player.js";
+          s.async=!0;
+          document.head.appendChild(s);
+        </script>
+      </div>
+
+      <div class="video-warning">
+        <div class="video-warning-icon">⚠️</div>
+        <div class="video-warning-text">Watch this video to the end to release your withdrawal!</div>
+      </div>
+
+      <div class="video-footer">
+        © 2026 All rights reserved - Mzansi Coupons
+      </div>
+    </div>
+
+  </div><!-- .app -->
+
+  <script>
+    const COUPONS = [
+      { name: 'Nike Air Force (Black)',      brand: 'Nike',      code: '96714954', value: 1250, img: 'image/1.jpg', grad: 'linear-gradient(135deg,#fbc2eb,#a6c1ee)' },
+      { name: 'Nike Air Force (Pink)',       brand: 'Nike',      code: '87526465', value: 1450, img: 'image/2.jpg', grad: 'linear-gradient(135deg,#ffd6e0,#ffb3c6)' },
+      { name: 'JBL Speaker',                brand: 'JBL',       code: '94141786', value: 1050, img: 'image/3.jpg', grad: 'linear-gradient(135deg,#ffecd2,#fcb69f)' },
+      { name: 'High Heels',                 brand: 'Riachuelo', code: '66777793', value: 1150, img: 'image/4.jpg', grad: 'linear-gradient(135deg,#d4b8e0,#b3cde0)' },
+      { name: 'Samsung Galaxy',             brand: 'Samsung',   code: '67661371', value:  900, img: 'image/5.jpg', grad: 'linear-gradient(135deg,#d4fc79,#96e6a1)' },
+      { name: 'Samsung Galaxy (Light Blue)',brand: 'Samsung',   code: '81795889', value:  800, img: 'image/6.jpg', grad: 'linear-gradient(135deg,#bde0fe,#a2d2ff)' },
+    ];
+
+    let idx   = 0;
+    let total = 0;
+
+    function fmt(n) {
+      return 'R ' + n.toLocaleString('en-ZA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function goToWelcome() {
+      document.getElementById('screen-landing').classList.remove('active');
+      document.getElementById('screen-welcome').classList.add('active');
+    }
+
+    function goToCoupons() {
+      const inp = document.getElementById('input-name');
+      if (!inp.value.trim()) {
+        inp.classList.add('error');
+        inp.focus();
+        setTimeout(() => inp.classList.remove('error'), 1400);
+        return;
+      }
+      document.getElementById('screen-welcome').classList.remove('active');
+      document.getElementById('screen-coupons').classList.add('active');
+      renderCoupon();
+    }
+
+    function renderCoupon() {
+      const c = COUPONS[idx];
+
+      const dotsEl = document.getElementById('dots');
+      dotsEl.innerHTML = '';
+      COUPONS.forEach((_, i) => {
+        const d = document.createElement('span');
+        d.className = 'dot' + (i === idx ? ' on' : '');
+        dotsEl.appendChild(d);
+      });
+
+      document.getElementById('counter').textContent = `Coupon ${idx + 1} of ${COUPONS.length}`;
+
+      const bg  = document.getElementById('card-bg');
+      const img = document.getElementById('card-img');
+      bg.style.background = c.grad;
+      img.alt = c.name;
+      img.src = c.img;
+      img.onerror = () => { img.style.display = 'none'; };
+      img.onload  = () => { img.style.display = 'block'; };
+      img.style.display = 'none';
+
+      document.getElementById('card-name').textContent       = c.name;
+      document.getElementById('prod-name-text').textContent  = c.name;
+      document.getElementById('prod-value-text').textContent = 'Value to earn: ' + fmt(c.value);
+      document.getElementById('balance-label').textContent   = fmt(total);
+      document.getElementById('input-code').value            = '';
+      document.getElementById('btn-validate').classList.add('hidden');
+    }
+
+    function onCodeType() {
+      const len = document.getElementById('input-code').value.length;
+      document.getElementById('btn-validate').classList.toggle('hidden', len < 8);
+    }
+
+    function validate() {
+      const c       = COUPONS[idx];
+      const entered = document.getElementById('input-code').value.trim();
+
+      if (entered !== c.code) {
+        showError();
+        return;
+      }
+
+      total += c.value;
+      document.getElementById('modal-amount').textContent = fmt(c.value);
+      document.getElementById('balance-label').textContent = fmt(total);
+      document.getElementById('modal').classList.add('open');
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', { value: c.value, currency: 'MZN' });
+      }
+    }
+
+    let toastTimer = null;
+    function showError() {
+      const inp   = document.getElementById('input-code');
+      const toast = document.getElementById('toast-error');
+
+      inp.classList.add('shake');
+      inp.style.borderColor = '#ef4444';
+      setTimeout(() => inp.classList.remove('shake'), 400);
+
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+        inp.style.borderColor = '';
+      }, 2500);
+    }
+
+    function nextCoupon() {
+      document.getElementById('modal').classList.remove('open');
+      idx++;
+      if (idx >= COUPONS.length) {
+        goToLimite();
+      } else {
+        renderCoupon();
+      }
+    }
+
+    function goToLimite() {
+      document.getElementById('screen-coupons').classList.remove('active');
+      document.getElementById('saldo-final').textContent = fmt(total);
+      document.getElementById('screen-limite').classList.add('active');
+    }
+
+    function goToVideo() {
+      document.getElementById('screen-limite').classList.remove('active');
+      document.getElementById('video-saldo-label').textContent = fmt(total);
+      document.getElementById('screen-video').classList.add('active');
+    }
+
+    document.getElementById('input-name').addEventListener('keydown', e => {
+      if (e.key === 'Enter') goToCoupons();
+    });
+
+    document.getElementById('input-code').addEventListener('keypress', e => {
+      if (!/[0-9]/.test(e.key)) e.preventDefault();
+    });
+  </script>
+</body>
+</html>
