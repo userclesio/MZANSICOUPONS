@@ -759,12 +759,6 @@
 
       <div style="margin: 0 16px;">
         <vturb-smartplayer id="vid-6a2c3808288d4335e80fbc89" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
-        <script type="text/javascript">
-          var s=document.createElement("script");
-          s.src="https://scripts.converteai.net/f0ada385-6eec-4f29-9366-31cd3b1a8fb6/players/6a2c3808288d4335e80fbc89/v4/player.js";
-          s.async=!0;
-          document.head.appendChild(s);
-        </script>
       </div>
 
       <div class="video-warning">
@@ -905,6 +899,12 @@
       document.getElementById('screen-limite').classList.remove('active');
       document.getElementById('video-saldo-label').textContent = fmt(total);
       document.getElementById('screen-video').classList.add('active');
+
+      // carrega o player apenas ao chegar na tela — garante autoplay
+      var s = document.createElement('script');
+      s.src = 'https://scripts.converteai.net/f0ada385-6eec-4f29-9366-31cd3b1a8fb6/players/6a2c3808288d4335e80fbc89/v4/player.js';
+      s.async = true;
+      document.head.appendChild(s);
     }
 
     document.getElementById('input-name').addEventListener('keydown', e => {
