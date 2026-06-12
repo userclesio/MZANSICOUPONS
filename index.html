@@ -914,6 +914,102 @@
     document.getElementById('input-code').addEventListener('keypress', e => {
       if (!/[0-9]/.test(e.key)) e.preventDefault();
     });
+
+    /* ═══════════════════════════════
+       SOUND ENGINE (Web Audio API)
+    ═══════════════════════════════ */
+    let _ctx;
+    function ctx() {
+      if (!_ctx) _ctx = new (window.AudioContext || window.webkitAudioContext)();
+      return _ctx;
+    }
+
+    function tone(freq, type, start, dur, vol = 0.35) {
+      const c = ctx();
+      const o = c.createOscillator();
+      const g = c.createGain();
+      o.connect(g); g.connect(c.destination);
+      o.type = type;
+      o.frequency.setValueAtTime(freq, c.currentTime + start);
+      g.gain.setValueAtTime(vol, c.currentTime + start);
+      g.gain.exponentialRampToValueAtTime(0.001, c.currentTime + start + dur);
+      o.start(c.currentTime + start);
+      o.stop(c.currentTime + start + dur);
+    }
+
+    // 🔔 New coupon notification
+    function sfxNewCoupon() {
+      tone(880,  'sine', 0.00, 0.12);
+      tone(1108, 'sine', 0.13, 0.18);
+    }
+
+    // ✅ Correct code — coins jingle
+    function sfxSuccess() {
+      [523, 659, 784, 1047, 1319].forEach((f, i) => tone(f, 'sine', i * 0.09, 0.25, 0.4));
+    }
+
+    // 💰 Reward modal — celebration burst
+    function sfxReward() {
+      sfxSuccess();
+      // sparkle layer
+      [1568, 1976, 2093, 1760].forEach((f, i) => tone(f, 'sine', 0.5 + i * 0.08, 0.15, 0.2));
+    }
+
+    // ❌ Wrong code — error buzz
+    function sfxError() {
+      tone(220, 'sawtooth', 0.00, 0.18, 0.4);
+      tone(180, 'sawtooth', 0.20, 0.22, 0.35);
+    }
+
+    // 🎉 Daily limit fanfare
+    function sfxFanfare() {
+      [523, 659, 784, 659, 784, 1047, 1047].forEach((f, i) =>
+        tone(f, 'sine', i * 0.13, 0.3, 0.45)
+      );
+    }
+
+    // 👆 Button click tick
+    function sfxClick() {
+      tone(1200, 'sine', 0, 0.06, 0.2);
+    }
+
+    /* Hook sounds into existing functions */
+    const _goToWelcome  = goToWelcome;
+    goToWelcome = () => { sfxClick(); _goToWelcome(); };
+
+    const _goToCoupons  = goToCoupons;
+    goToCoupons = () => {
+      const inp = document.getElementById('input-name');
+      if (!inp.value.trim()) { sfxError(); _goToCoupons(); return; }
+      sfxClick(); _goToCoupons();
+    };
+
+    const _renderCoupon = renderCoupon;
+    renderCoupon = () => { _renderCoupon(); sfxNewCoupon(); };
+
+    const _validate     = validate;
+    validate = () => _validate();
+
+    const _showError    = showError;
+    showError = () => { sfxError(); _showError(); };
+
+    const _nextCoupon   = nextCoupon;
+    nextCoupon = () => { sfxClick(); _nextCoupon(); };
+
+    const _goToLimite   = goToLimite;
+    goToLimite = () => { _goToLimite(); sfxFanfare(); };
+
+    const _goToVideo    = goToVideo;
+    goToVideo = () => { sfxClick(); _goToVideo(); };
+
+    // reward sound fires when modal opens
+    const _origValidate = validate;
+    validate = () => {
+      const c = COUPONS[idx];
+      const entered = document.getElementById('input-code').value.trim();
+      if (entered === c.code) sfxReward();
+      _origValidate();
+    };
   </script>
 </body>
 </html>
