@@ -857,9 +857,7 @@
       document.getElementById('balance-label').textContent = fmt(total);
       document.getElementById('modal').classList.add('open');
 
-      if (typeof fbq === 'function') {
-        fbq('track', 'Purchase', { value: c.value, currency: 'MZN' });
-      }
+
     }
 
     let toastTimer = null;
